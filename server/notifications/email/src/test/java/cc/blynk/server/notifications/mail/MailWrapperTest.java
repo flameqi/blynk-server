@@ -123,18 +123,8 @@ public class MailWrapperTest {
 
         MailWrapper mailWrapper = new MailWrapper(properties, AppNameUtil.BLYNK);
 
-        mailWrapper.sendText(to, "Hello", "Happy Blynking!\n" +
-                "-\n" +
-                "Getting Started Guide -> https://www.blynk.cc/getting-started\n" +
-                "Documentation -> http://docs.blynk.cc/\n" +
-                "Sketch generator -> https://examples.blynk.cc/\n" +
-                "\n" +
-                "Latest Blynk library -> https://github.com/blynkkk/blynk-library/releases/download/v0.6.1/Blynk_v0.6.1.zip\n" +
-                "Latest Blynk server -> https://github.com/blynkkk/blynk-server/releases/download/v0.18.1/server-0.18.1.jar\n" +
-                "-\n" +
-                "https://www.blynk.cc\n" +
-                "twitter.com/blynk_app\n" +
-                "www.facebook.com/blynkapp");
+        mailWrapper.sendText(to, "你", "欢迎来到 Blynk!\n" +
+                "-\n" );
     }
 
 }

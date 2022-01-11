@@ -1,13 +1,4 @@
 
 Happy Blynking!
 -
-Getting Started Guide -> https://www.blynk.cc/getting-started
-Documentation -> http://docs.blynk.cc/
-Sketch generator -> https://examples.blynk.cc/
-
-Latest Blynk library -> https://github.com/blynkkk/blynk-library/releases/download/v0.6.1/Blynk_Release_v0.6.1.zip
-Latest Blynk server -> https://github.com/blynkkk/blynk-server/releases/download/v0.41.16/server-0.41.16.jar
--
-https://www.blynk.cc
-twitter.com/blynk_app
-www.facebook.com/blynkapp
+邮件发自私人邮箱，只为大家可以共用此服务器。请不要回复此邮件。如有回复，服务器关闭，所有源码来自于blynk。如果出现任何问题，概不负责！不得使用此服务器从事非法活动！！如有发现第一时间向有关部门反映。

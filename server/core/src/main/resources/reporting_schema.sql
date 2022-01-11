@@ -8,7 +8,7 @@ CREATE TABLE reporting_raw_data (
   device_id int4,
   pin int2,
   pinType char,
-  ts timestamp,
+  ts timestamp with time zone,
   stringValue text,
   doubleValue float8,
 
@@ -123,7 +123,7 @@ CREATE TABLE reporting_app_command_stat_minute (
 
 CREATE TABLE reporting_http_command_stat_minute (
   region text,
-  ts timestamp,
+  ts timestamp with time zone,
   is_hardware_connected int4,
   is_app_connected int4,
   get_pin_data int4,

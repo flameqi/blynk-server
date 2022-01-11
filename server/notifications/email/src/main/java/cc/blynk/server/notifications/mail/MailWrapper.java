@@ -20,9 +20,12 @@ public class MailWrapper {
         if (host != null) {
             mailProperties.put("mail.smtp.ssl.trust", host);
         }
-        if (host != null && (host.endsWith("sparkpostmail.com") || host.endsWith("amazonaws.com"))) {
+        if (host != null && (host.endsWith("163.com") || host.endsWith("qq.com"))) {
             // Amazon AWS Simple Email Service uses an account (mail.from) distinct from the username,
             // which is just like SparkPost.
+            mailProperties.put("mail.transport.protocol", "smtp");
+            mailProperties.put("mail.smtp.auth", "true");
+            mailProperties.setProperty("mail.smtp.ssl.enable", "true");
             client = new ThirdPartyMailClient(mailProperties, productName);
         } else {
             client = new GMailClient(mailProperties);

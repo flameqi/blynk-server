@@ -43,20 +43,23 @@ public class MobileResetPasswordHandler extends SimpleChannelInboundHandler<Rese
     private final UserDao userDao;
     private final BlockingIOProcessor blockingIOProcessor;
     private final String host;
+    private final String port;
 
     public MobileResetPasswordHandler(Holder holder) {
         this.tokensPool = holder.tokensPool;
         String productName = holder.props.productName;
-        this.resetEmailSubj = "Password restoration for your " + productName + " account.";
+        this.resetEmailSubj = "为你的 " + productName + " 帐号重置密码.";
         this.resetEmailBody = holder.textHolder.appResetEmailTemplate
                 .replace(Placeholders.PRODUCT_NAME, productName);
-        this.resetConfirmationSubj = "Your new password on " + productName;
+        this.resetConfirmationSubj = "你在" + productName+"的新密码";
         this.resetConfirmationBody = holder.textHolder.appResetEmailConfirmationTemplate
                 .replace(Placeholders.PRODUCT_NAME, productName);
         this.mailWrapper = holder.mailWrapper;
         this.userDao = holder.userDao;
         this.blockingIOProcessor = holder.blockingIOProcessor;
-        this.host = holder.props.getRestoreHost();
+        // this.host = holder.props.getRestoreHost();
+        this.host = holder.props.getResetHost();//flame wrote on 20220111
+        this.port = holder.props.getResetPort();//flame wrote on 20220111
     }
 
     @Override
@@ -159,7 +162,7 @@ public class MobileResetPasswordHandler extends SimpleChannelInboundHandler<Rese
         ResetPassToken userToken = new ResetPassToken(trimmedEmail, appName);
         tokensPool.addToken(token, userToken);
 
-        String resetUrl = "http://" + host + "/restore?token=" + token + "&email=" + trimmedEmail;
+        String resetUrl = "http://" + host + port + "/restore?token=" + token + "&email=" + trimmedEmail;
         String body = resetEmailBody.replace(Placeholders.RESET_URL, resetUrl);
         String qrString = appName.toLowerCase() + "://restore?token=" + token + "&email=" + encode(trimmedEmail);
         byte[] qrBytes = QRCode.from(qrString).to(ImageType.JPG).withSize(250, 250).stream().toByteArray();

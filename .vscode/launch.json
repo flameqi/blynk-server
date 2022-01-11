@@ -1,0 +1,77 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch ClientLauncher",
+            "request": "launch",
+            "mainClass": "cc.blynk.client.ClientLauncher",
+            "projectName": "client"
+        },
+        {
+            "type": "java",
+            "name": "Launch FlahsedTokenGenerator",
+            "request": "launch",
+            "mainClass": "cc.blynk.integration.tools.FlahsedTokenGenerator",
+            "projectName": "integration-tests"
+        },
+        {
+            "type": "java",
+            "name": "Launch ProjectTokenGenerator",
+            "request": "launch",
+            "mainClass": "cc.blynk.integration.tools.ProjectTokenGenerator",
+            "projectName": "integration-tests"
+        },
+        {
+            "type": "java",
+            "name": "Launch QRGenerator",
+            "request": "launch",
+            "mainClass": "cc.blynk.integration.tools.QRGenerator",
+            "projectName": "integration-tests"
+        },
+        {
+            "type": "java",
+            "name": "Launch TokenGenerator",
+            "request": "launch",
+            "mainClass": "cc.blynk.integration.tools.TokenGenerator",
+            "projectName": "integration-tests"
+        },
+        {
+            "type": "java",
+            "name": "Launch UserReader",
+            "request": "launch",
+            "mainClass": "cc.blynk.integration.tools.UserReader",
+            "projectName": "integration-tests"
+        },
+        {
+            "type": "java",
+            "name": "Launch ServerLauncher",
+            "request": "launch",
+            "mainClass": "cc.blynk.server.launcher.ServerLauncher",
+            "projectName": "launcher"
+        },
+        {
+            "type": "java",
+            "name": "Launch ForwardingTokenGenerator",
+            "request": "launch",
+            "mainClass": "cc.blynk.server.tools.ForwardingTokenGenerator",
+            "projectName": "tools"
+        },
+        {
+            "type": "java",
+            "name": "Launch ReportingDataCleaner",
+            "request": "launch",
+            "mainClass": "cc.blynk.server.tools.ReportingDataCleaner",
+            "projectName": "tools"
+        }
+    ]
+}

@@ -23,10 +23,10 @@ public final class TokenGeneratorUtil {
     }
 
     public static boolean isNotValidResetToken(String token) {
-        if (token.length() != 64) {
+        if (token.length() != 32) {
             return true;
         }
-        for (int i = 0; i < 64; i++) {
+        for (int i = 0; i < 32; i++) {
             char c = token.charAt(i);
             if (!(Character.isLetterOrDigit(c) || c == '-' || c == '_')) {
                 return true;

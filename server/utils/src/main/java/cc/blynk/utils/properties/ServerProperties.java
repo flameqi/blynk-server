@@ -95,6 +95,9 @@ public class ServerProperties extends BaseProperties {
     private String getHostProperty() {
         return getProperty("server.host");
     }
+    public String getResetHost() {
+        return getProperty("server.host");
+    }
 
     public String getAdminUrl(String host) {
         String httpsPort = getHttpsPortOrBlankIfDefaultAsString();
@@ -104,7 +107,11 @@ public class ServerProperties extends BaseProperties {
     public boolean isDBEnabled() {
         return getBoolProperty("enable.db");
     }
-
+    public String getResetPort(){
+        // return getHttpsPortOrBlankIfDefaultAsString();
+        return ":"+getProperty("http.port");
+        
+    }
     private String getHttpsPortOrBlankIfDefaultAsString() {
         if (force80Port()) {
             //means default port 443 is used, so no need to attach it

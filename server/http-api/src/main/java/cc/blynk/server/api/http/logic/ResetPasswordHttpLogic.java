@@ -69,7 +69,7 @@ public class ResetPasswordHttpLogic extends BaseHttpHandler {
         this.userDao = holder.userDao;
         this.tokensPool = holder.tokensPool;
         String productName = holder.props.productName;
-        this.emailSubj = "Password reset request for the " + productName + " app.";
+        this.emailSubj = "为" + productName + " app 准备的重置密码链接.";
         this.emailBody = FileLoaderUtil.readResetEmailTemplateAsString()
                 .replace(Placeholders.PRODUCT_NAME, productName);
         this.newResetPage = holder.textHolder.appResetEmailTemplate
@@ -85,7 +85,9 @@ public class ResetPasswordHttpLogic extends BaseHttpHandler {
         this.blockingIOProcessor = holder.blockingIOProcessor;
         this.dbManager = holder.dbManager;
         this.fileManager = holder.fileManager;
-        this.resetClickHost = holder.props.getRestoreHost();
+        // this.resetClickHost = holder.props.getRestoreHost();
+        this.resetClickHost = holder.props.getResetHost()+holder.props.getResetPort();//flame wrote on 20220111
+        
     }
 
     private static String generateToken() {
@@ -150,7 +152,7 @@ public class ResetPasswordHttpLogic extends BaseHttpHandler {
             return badRequest("Invalid request parameters.");
         }
 
-        log.info("{} landed.", baseToken.email);
+        log.info("{} landed in landing.", baseToken.email);
         String page = pageContent.replace(Placeholders.EMAIL, baseToken.email).replace(Placeholders.TOKEN, token);
         return ok(page, MediaType.TEXT_HTML);
     }
@@ -164,16 +166,17 @@ public class ResetPasswordHttpLogic extends BaseHttpHandler {
         //if (user == null) {
         //    return badRequest("Your token was not found or it is outdated. Please try again.");
         //}
-
-        if (TokenGeneratorUtil.isNotValidResetToken(token)
-                || (email != null && BlynkEmailValidator.isNotValidEmail(email))) {
+        log.info("get the restore token is :"+token +" || get email is"+email);
+        if (TokenGeneratorUtil.isNotValidResetToken(token) || (email != null && BlynkEmailValidator.isNotValidEmail(email))) {
             return badRequest("Invalid request parameters.");
         }
 
-        log.info("{} landed.", email);
-        String resetUrl = "http://" + resetClickHost + "/restore?token=" + token + "&email=" + email;
-        String body = newResetPage.replace(Placeholders.RESET_URL, resetUrl);
-        return ok(body, MediaType.TEXT_HTML);
+        log.info("{}  landed in restore.", email);
+        // String resetUrl = "http://" + resetClickHost + "/restore?token=" + token + "&email=" + email;
+        // String body = newResetPage.replace(Placeholders.RESET_URL, resetUrl);
+        // return ok(body, MediaType.TEXT_HTML);
+        String page = pageContent.replace(Placeholders.EMAIL, email).replace(Placeholders.TOKEN, token);
+        return ok(page, MediaType.TEXT_HTML);
     }
 
     @POST
