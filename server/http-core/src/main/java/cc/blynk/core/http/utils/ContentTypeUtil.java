@@ -32,7 +32,9 @@ public final class ContentTypeUtil {
         if (fileName.endsWith(".bin")) {
             return "application/octet-stream";
         }
-
+        if (fileName.endsWith(".apk")) {
+            return "application/zip";
+        }
         return "text/html";
     }
 
